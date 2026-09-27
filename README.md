@@ -14,5 +14,3 @@ tanto de análisis de datos como de gestión administrativa.
 
 - Python (pandas, Faker, openpyxl)
 - Excel (tablas dinámicas, gráficos, presupuesto)
-
-## Estructura del proyecto
