@@ -12,3 +12,6 @@ __pycache__/
 
 # Archivos temporales de Excel
 ~$*.xlsx
+
+# macOS
+.DS_Store
