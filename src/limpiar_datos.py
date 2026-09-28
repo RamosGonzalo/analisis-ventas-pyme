@@ -32,3 +32,15 @@ print("Clientes con punto (prefijos sin limpiar):", df["cliente"].str.contains(r
 
 diferencia = (df["cantidad"] * df["precio_unitario"] - df["monto_total"]).abs()
 print("Filas donde el monto no coincide:", (diferencia > 0.01).sum())
+
+df['anio'] = df['fecha'].dt.year
+df['mes'] = df['fecha'].dt.month
+df['dia'] = df['fecha'].dt.day
+df['dia_semana'] = df['fecha'].dt.dayofweek.map(DIAS)
+
+os.makedirs(os.path.dirname(RUTA_SALIDA), exist_ok=True)
+with pd.ExcelWriter(RUTA_SALIDA, engine='openpyxl', datetime_format='YYYY-MM-DD') as writer:
+    df.to_excel(writer, index=False, sheet_name='Ventas')
+
+print(f"\nArchivo limpio guardado en: {RUTA_SALIDA}")
+print(f"Filas: {len(df)} | Columnas: {len(df.columns)}")
