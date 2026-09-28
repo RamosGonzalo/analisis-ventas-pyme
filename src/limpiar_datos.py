@@ -37,9 +37,10 @@ df['anio'] = df['fecha'].dt.year
 df['mes'] = df['fecha'].dt.month
 df['dia'] = df['fecha'].dt.day
 df['dia_semana'] = df['fecha'].dt.dayofweek.map(DIAS)
+df['periodo'] = df['fecha'].dt.strftime('%Y-%m')
 
 os.makedirs(os.path.dirname(RUTA_SALIDA), exist_ok=True)
-with pd.ExcelWriter(RUTA_SALIDA, engine='openpyxl', datetime_format='YYYY-MM-DD') as writer:
+with pd.ExcelWriter(RUTA_SALIDA, engine='openpyxl', date_format='YYYY-MM-DD') as writer:
     df.to_excel(writer, index=False, sheet_name='Ventas')
 
 print(f"\nArchivo limpio guardado en: {RUTA_SALIDA}")
